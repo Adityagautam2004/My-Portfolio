@@ -54,7 +54,7 @@ export default function EasterEgg() {
     return (
       <div className="easter-egg-floating-hint" onClick={() => document.dispatchEvent(new CustomEvent('easter-egg-trigger'))}>
         <span className="hint-icon">🤫</span>
-        <span className="hint-text">Psst... click logo 5x or use Konami code</span>
+        <span className="hint-text">Psst...click logo 5x</span>
       </div>
     );
   }
