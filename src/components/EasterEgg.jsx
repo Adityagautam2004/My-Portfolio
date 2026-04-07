@@ -50,7 +50,14 @@ export default function EasterEgg() {
     return () => document.removeEventListener('easter-egg-trigger', handler);
   }, []);
 
-  if (!active) return null;
+  if (!active) {
+    return (
+      <div className="easter-egg-floating-hint" onClick={() => document.dispatchEvent(new CustomEvent('easter-egg-trigger'))}>
+        <span className="hint-icon">🤫</span>
+        <span className="hint-text">Psst... click logo 5x or use Konami code</span>
+      </div>
+    );
+  }
 
   return (
     <div

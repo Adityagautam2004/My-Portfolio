@@ -13,8 +13,8 @@ const PROJECTS = [
       'JWT + Razorpay integration for PCI-compliant secure transactions and payment flows.',
       'Cloudinary media pipeline — reduced image payload by 60% for performance on low-bandwidth networks.',
     ],
-    live: 'https://prescripto-demo.vercel.app',
-    github: 'https://github.com/adikr2002/prescripto',
+    live: 'https://prescripto-1snl.vercel.app/',
+    github: 'https://github.com/Adityagautam2004/Prescripto',
   },
   {
     id: 'movieflix',
@@ -27,8 +27,8 @@ const PROJECTS = [
       'Feature-rich IMDb-like movie discovery app with real-time search, dynamic routing, and live API content.',
       'Redux for advanced state management; skeleton loaders + error boundaries for polished UX.',
     ],
-    live: null,
-    github: 'https://github.com/adikr2002/movieflix',
+    live: 'https://movie-flix-react-app.vercel.app/',
+    github: 'https://github.com/Adityagautam2004/MovieFlix-React-App-',
   },
   {
     id: 'examadda',
@@ -41,7 +41,7 @@ const PROJECTS = [
       'Micro-frontend architecture decomposed into Admin, User, and Tech/News as independent Next.js apps.',
       'SSG + On-Demand ISR boosted Core Web Vitals by 25% and improved organic SEO significantly.',
     ],
-    live: 'https://examadda.in',
+    live: 'https://tech.examadda.org/',
     github: null,
   },
 ];
@@ -91,7 +91,6 @@ function ProjectCard({ project }) {
     <div
       className={`reveal project-card ${project.featured ? 'project-featured' : 'project-half'}`}
       ref={revealRef}
-      style={{ gridColumn: project.featured ? 'span 12' : 'span 6' }}
     >
       <div ref={cardRef} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <div className={`project-shimmer`} aria-hidden="true" />
@@ -176,16 +175,7 @@ export default function Projects() {
 
           {/* More coming soon card */}
           <div
-            className="project-card project-third reveal"
-            style={{
-              gridColumn: 'span 12',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 32,
-              textAlign: 'center',
-              minHeight: 140,
-            }}
+            className="project-card project-coming-soon reveal"
           >
             <div>
               <div style={{ fontSize: '2rem', marginBottom: 12 }}>✨</div>
@@ -193,7 +183,7 @@ export default function Projects() {
                 More projects incoming
               </div>
               <a
-                href="https://github.com/adikr2002"
+                href="https://github.com/Adityagautam2004"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-link-btn secondary"

@@ -10,13 +10,13 @@ const SKILLS = {
     { name: 'C++',        icon: '⚡' },
   ],
   Frontend: [
-    { name: 'React.js',    icon: '⚛️' },
-    { name: 'Next.js',     icon: '▲' },
-    { name: 'HTML5',       icon: '🌐' },
-    { name: 'CSS3',        icon: '🎨' },
-    { name: 'Tailwind',    icon: '💨' },
-    { name: 'Redux',       icon: '🔄' },
-    { name: 'GSAP',        icon: '🎬' },
+    { name: 'React.js',  icon: '⚛️' },
+    { name: 'Next.js',   icon: '▲' },
+    { name: 'HTML5',     icon: '🌐' },
+    { name: 'CSS3',      icon: '🎨' },
+    { name: 'Tailwind',  icon: '💨' },
+    { name: 'Redux',     icon: '🔄' },
+    { name: 'GSAP',      icon: '🎬' },
   ],
   Backend: [
     { name: 'Node.js',    icon: '🟢' },
@@ -26,12 +26,12 @@ const SKILLS = {
     { name: 'JWT',        icon: '🔐' },
   ],
   'Cloud & DevOps': [
-    { name: 'AWS S3',        icon: '☁️' },
-    { name: 'CloudFront',    icon: '🌍' },
-    { name: 'Docker',        icon: '🐳' },
-    { name: 'GitHub Actions',icon: '🤖' },
-    { name: 'Serverless',    icon: '⚡' },
-    { name: 'Vercel',        icon: '▲' },
+    { name: 'AWS S3',          icon: '☁️' },
+    { name: 'CloudFront',      icon: '🌍' },
+    { name: 'Docker',          icon: '🐳' },
+    { name: 'GitHub Actions',  icon: '🤖' },
+    { name: 'Serverless',      icon: '⚡' },
+    { name: 'Vercel',          icon: '▲' },
   ],
   Databases: [
     { name: 'MongoDB',    icon: '🍃' },
@@ -52,19 +52,109 @@ const SKILLS = {
 
 const CATEGORIES = Object.keys(SKILLS);
 
-export default function Skills() {
-  const [activeTab, setActiveTab] = useState(CATEGORIES[0]);
-  const gridRef   = useRef(null);
-  const sectionRef = useRef(null);
+/* ── Shared Pill ─────────────────────────────────────────────── */
+function Pill({ skill, visible, delay }) {
+  return (
+    <div
+      className="skill-pill"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'scale(1)' : 'scale(0.85)',
+        transition: `opacity 0.35s ease ${delay}ms, transform 0.35s ease ${delay}ms`,
+      }}
+      title={skill.name}
+    >
+      <span className="skill-icon" aria-hidden="true">{skill.icon}</span>
+      <span className="skill-name">{skill.name}</span>
+    </div>
+  );
+}
 
-  // Animate pills in when section is visible
+/* ── Desktop: All categories visible at once ─────────────────── */
+function SkillsDesktop({ visible }) {
+  return (
+    <div className="skills-all-categories">
+      {CATEGORIES.map((cat, catIdx) => (
+        <div key={cat} className="skills-category-block">
+          <div className="skills-category-title">{cat}</div>
+          <div className="skills-category-pills">
+            {SKILLS[cat].map((skill, i) => (
+              <Pill
+                key={skill.name}
+                skill={skill}
+                visible={visible}
+                delay={catIdx * 40 + i * 55}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Mobile: Tabbed interface ────────────────────────────────── */
+function SkillsMobile() {
+  const [activeTab, setActiveTab] = useState(CATEGORIES[0]);
+  const [pillVisible, setPillVisible] = useState(true);
+  const gridRef = useRef(null);
+
+  // Re-animate pills when tab changes
+  const switchTab = (cat) => {
+    setPillVisible(false);
+    setTimeout(() => {
+      setActiveTab(cat);
+      setPillVisible(true);
+    }, 120);
+  };
+
+  return (
+    <>
+      <div className="skills-tabs" role="tablist" aria-label="Skill categories">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            className={`skills-tab-btn${activeTab === cat ? ' active' : ''}`}
+            onClick={() => switchTab(cat)}
+            role="tab"
+            aria-selected={activeTab === cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div
+        ref={gridRef}
+        className="skills-grid"
+        role="tabpanel"
+        aria-label={`${activeTab} skills`}
+      >
+        {SKILLS[activeTab].map((skill, i) => (
+          <Pill
+            key={skill.name}
+            skill={skill}
+            visible={pillVisible}
+            delay={i * 60}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
+
+/* ── Main Export ─────────────────────────────────────────────── */
+export default function Skills() {
+  const sectionRef = useRef(null);
+  const [sectionVisible, setSectionVisible] = useState(false);
+
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('visible');
+          setSectionVisible(true);
           obs.disconnect();
         }
       },
@@ -74,61 +164,33 @@ export default function Skills() {
     return () => obs.disconnect();
   }, []);
 
-  // Stagger animate pills when tab changes
-  useEffect(() => {
-    const pills = gridRef.current?.querySelectorAll('.skill-pill') ?? [];
-    pills.forEach((p, i) => {
-      p.classList.remove('visible');
-      setTimeout(() => p.classList.add('visible'), i * 60 + 50);
-    });
-  }, [activeTab]);
-
   return (
     <section className="section" id="skills" aria-labelledby="skills-heading">
       <div className="container">
-        <div className="reveal" ref={sectionRef}>
+        <div
+          ref={sectionRef}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'translateY(0)' : 'translateY(40px)',
+            transition: 'opacity 0.7s ease, transform 0.7s ease',
+          }}
+        >
           <span className="section-label">// tech stack</span>
           <h2 id="skills-heading" className="section-heading">Tools I Build With</h2>
           <p className="section-subheading">
-            A curated collection of technologies I use to craft fast, scalable, and
-            delightful digital products.
+            A curated collection of technologies I use to craft fast, scalable,
+            and delightful digital products.
           </p>
-        </div>
 
-        {/* Tabs */}
-        <div className="skills-tabs" role="tablist" aria-label="Skill categories">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              className={`skills-tab-btn${activeTab === cat ? ' active' : ''}`}
-              onClick={() => setActiveTab(cat)}
-              role="tab"
-              aria-selected={activeTab === cat}
-              id={`skills-tab-${cat.replace(/\s/g, '-').toLowerCase()}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+          {/* Desktop: all at once */}
+          <div className="skills-desktop-only">
+            <SkillsDesktop visible={sectionVisible} />
+          </div>
 
-        {/* Pills */}
-        <div
-          ref={gridRef}
-          className="skills-grid"
-          role="tabpanel"
-          aria-label={`${activeTab} skills`}
-        >
-          {SKILLS[activeTab].map((skill) => (
-            <div
-              key={skill.name}
-              className="skill-pill"
-              title={skill.name}
-              role="listitem"
-            >
-              <span className="skill-icon" aria-hidden="true">{skill.icon}</span>
-              <span className="skill-name">{skill.name}</span>
-            </div>
-          ))}
+          {/* Mobile: tabbed */}
+          <div className="skills-mobile-only">
+            <SkillsMobile />
+          </div>
         </div>
       </div>
     </section>

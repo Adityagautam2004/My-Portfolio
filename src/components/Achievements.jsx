@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 const COUNTERS = [
   { value: 400, suffix: '+', label: 'DSA Problems Solved' },
   { value: 50,  suffix: '+', label: 'Freelance Tasks Delivered' },
-  { value: 5,   suffix: 'K+', label: 'Freelance Earned ($)' },
+  { value: 10,   suffix: 'K+', label: 'Freelance Earned ($)' },
   { value: 7.45,suffix: '',  label: 'CGPA @ IIIT Ranchi', decimals: 2 },
 ];
 

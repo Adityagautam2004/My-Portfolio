@@ -34,9 +34,18 @@ export default function About() {
               <div style={{ position: 'relative' }}>
                 {/* Spinning gradient border */}
                 <div className="avatar-glow" aria-hidden="true" />
-                <div className="avatar-inner" role="img" aria-label="Aditya Gautam avatar">
-                  <span className="avatar-initials">AG</span>
-                </div>
+              <div className="avatar-inner" role="img" aria-label="Aditya Gautam avatar">
+                <img
+                  src="/photo.jpg"
+                  alt="Aditya Gautam"
+                  className="avatar-photo"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                <span className="avatar-initials" style={{ display: 'none' }}>AG</span>
+              </div>
 
                 {/* Floating badges */}
                 <div className="avatar-float-badge float-badge-react" aria-hidden="true">⚛️ React</div>
@@ -47,10 +56,10 @@ export default function About() {
 
               {/* Social links */}
               <div className="avatar-social">
-                <a href="https://github.com/adikr2002" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                <a href="https://github.com/Adityagautam2004" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
                   <i className="fa-brands fa-github" aria-hidden="true" />
                 </a>
-                <a href="https://linkedin.com/in/aditya-gautam-iiit" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/aditya-gautam-2371b2204/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
                   <i className="fa-brands fa-linkedin-in" aria-hidden="true" />
                 </a>
                 <a href="mailto:adikr2002@gmail.com" aria-label="Email Aditya" title="Email">
@@ -89,7 +98,7 @@ export default function About() {
 
             <div className="about-bio">
               <p>
-                I&apos;m a 2nd-year Computer Science student at IIIT Ranchi, currently
+                I&apos;m a <strong>3rd-year (Pre-Final Year)</strong> Computer Science student at IIIT Ranchi, currently
                 working as a <strong>Software Engineering Intern at Target Board</strong>,
                 where I&apos;m building infrastructure for platforms serving{' '}
                 <strong>7 Lakh+ students</strong> with high availability.

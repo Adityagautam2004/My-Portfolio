@@ -67,7 +67,7 @@ export default function App() {
             <Experience />
             <Projects />
             <Achievements />
-            <Positions />
+            {/* <Positions /> */}
             <Contact />
           </main>
 

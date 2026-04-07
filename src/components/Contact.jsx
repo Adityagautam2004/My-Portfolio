@@ -8,8 +8,8 @@ const CONTACT_INFO = [
 ];
 
 const SOCIALS = [
-  { icon: 'fa-brands fa-github',     href: 'https://github.com/adikr2002',                label: 'GitHub'   },
-  { icon: 'fa-brands fa-linkedin',   href: 'https://linkedin.com/in/aditya-gautam-iiit',  label: 'LinkedIn' },
+  { icon: 'fa-brands fa-github',     href: 'https://github.com/Adityagautam2004',                label: 'GitHub'   },
+  { icon: 'fa-brands fa-linkedin',   href: 'https://www.linkedin.com/in/aditya-gautam-2371b2204/',  label: 'LinkedIn' },
   { icon: 'fa-solid fa-envelope',    href: 'mailto:adikr2002@gmail.com',                  label: 'Email'    },
   { icon: 'fa-brands fa-twitter',    href: 'https://twitter.com/adikr2002',               label: 'Twitter'  },
 ];
