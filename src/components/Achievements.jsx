@@ -4,7 +4,7 @@ const COUNTERS = [
   { value: 400, suffix: '+', label: 'DSA Problems Solved' },
   { value: 50,  suffix: '+', label: 'Freelance Tasks Delivered' },
   { value: 10,   suffix: 'K+', label: 'Freelance Earned ($)' },
-  { value: 7.45,suffix: '',  label: 'CGPA @ IIIT Ranchi', decimals: 2 },
+  { value: 7.6, suffix: '',  label: 'CGPA @ IIIT Ranchi', decimals: 2 },
 ];
 
 const ACHIEVEMENTS = [
