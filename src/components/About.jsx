@@ -81,7 +81,7 @@ export default function About() {
                   DSA Problems
                 </div>
                 <div className="stat-pill">
-                  <strong>7.45</strong>
+                  <strong>7.6</strong>
                   CGPA
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function About() {
               <div className="edu-info">
                 <div className="edu-degree">B.Tech in Computer Science &amp; Engineering</div>
                 <div className="edu-school">Indian Institute of Information Technology, Ranchi</div>
-                <div className="edu-meta">2023 – 2027 &nbsp;·&nbsp; CGPA: 7.45</div>
+                <div className="edu-meta">2023 – 2027 &nbsp;·&nbsp; CGPA: 7.6</div>
               </div>
             </div>
           </div>
