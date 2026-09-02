@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 const COUNTERS = [
-  { value: 400, suffix: '+', label: 'DSA Problems Solved' },
-  { value: 50,  suffix: '+', label: 'Freelance Tasks Delivered' },
-  { value: 10,   suffix: 'K+', label: 'Freelance Earned ($)' },
-  { value: 7.6, suffix: '',  label: 'CGPA @ IIIT Ranchi', decimals: 2 },
+  { value: 400,  suffix: '+', label: 'DSA Problems Solved' },
+  { value: 87.5, suffix: '%', label: 'API Latency Reduction', decimals: 1 },
+  { value: 700,  suffix: 'K+', label: 'Users Served in Production' },
+  { value: 7.6,  suffix: '',  label: 'CGPA @ IIIT Ranchi', decimals: 2 },
 ];
 
 const ACHIEVEMENTS = [
