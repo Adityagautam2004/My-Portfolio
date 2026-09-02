@@ -18,7 +18,6 @@ const PROJECTS = [
   },
   {
     id: 'fortune-first',
-    size: 'third',
     emoji: '💰',
     banner: 'alt1',
     title: 'Fortune First — Portfolio & Finance Management',
@@ -32,7 +31,6 @@ const PROJECTS = [
   },
   {
     id: 'prescripto',
-    size: 'third',
     emoji: '🩺',
     banner: 'alt2',
     title: 'Prescripto — Healthcare Ecosystem',
@@ -40,13 +38,13 @@ const PROJECTS = [
     description: [
       'Full-stack doctor-patient booking platform with automated scheduling, doctor dashboards, and medical record tracking.',
       'JWT + Razorpay integration for PCI-compliant secure transactions and payment flows.',
+      'Cloudinary media pipeline — reduced image payload by 60% for performance on low-bandwidth networks.',
     ],
     live: 'https://prescripto-1snl.vercel.app/',
     github: 'https://github.com/Adityagautam2004/Prescripto',
   },
   {
     id: 'movieflix',
-    size: 'third',
     emoji: '🎬',
     banner: 'alt3',
     title: 'Movieflix — Discovery Platform',
@@ -57,6 +55,19 @@ const PROJECTS = [
     ],
     live: 'https://movie-flix-react-app.vercel.app/',
     github: 'https://github.com/Adityagautam2004/MovieFlix-React-App-',
+  },
+  {
+    id: 'examadda',
+    emoji: '📚',
+    banner: 'alt1',
+    title: 'ExamAdda Platform',
+    tech: ['Next.js', 'AWS S3', 'CloudFront', 'REST APIs'],
+    description: [
+      'Micro-frontend architecture decomposed into Admin, User, and Tech/News as independent Next.js apps.',
+      'SSG + On-Demand ISR boosted Core Web Vitals by 25% and improved organic SEO significantly.',
+    ],
+    live: 'https://tech.examadda.org/',
+    github: null,
   },
 ];
 
@@ -101,15 +112,9 @@ function ProjectCard({ project }) {
     };
   }, []);
 
-  const sizeClass = project.featured
-    ? 'project-featured'
-    : project.size === 'third'
-      ? 'project-third'
-      : 'project-half';
-
   return (
     <div
-      className={`reveal project-card ${sizeClass}`}
+      className={`reveal project-card ${project.featured ? 'project-featured' : 'project-half'}`}
       ref={revealRef}
     >
       <div ref={cardRef} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>

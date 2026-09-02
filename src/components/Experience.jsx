@@ -28,6 +28,31 @@ const EXPERIENCES = [
       'Built an in-browser code execution service with queue-based request management for a DSA/technical practice module.',
     ],
   },
+  {
+    role: 'Freelance Frontend Developer',
+    company: 'Outlier AI',
+    type: 'Remote',
+    period: 'April 2025 – Present',
+    tags: ['AI Training', 'React', 'Next.js', 'TypeScript'],
+    emoji: '💻',
+    points: [
+      'Delivered 50+ high-impact frontend development tasks across 4+ concurrent AI training projects.',
+      'Earned $5,000+ in a single month through scalable, quality development output.',
+      'Specialized in training AI models to enhance frontend development workflows and code quality.',
+    ],
+  },
+  {
+    role: 'Frontend Developer Intern',
+    company: 'PreCollege',
+    type: 'Remote',
+    period: 'June 2024 – Aug 2024',
+    tags: ['React.js', 'Tailwind CSS', 'UX', 'Performance'],
+    emoji: '🏢',
+    points: [
+      'Boosted user engagement by 20% through redesigned UI components with improved UX patterns.',
+      'Reduced page load time by 30% via React state management optimization and code splitting.',
+    ],
+  },
 ];
 
 function TimelineCard({ exp, direction }) {
