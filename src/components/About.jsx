@@ -99,9 +99,9 @@ export default function About() {
             <div className="about-bio">
               <p>
                 I&apos;m a <strong>3rd-year (Pre-Final Year)</strong> Computer Science student at IIIT Ranchi, currently
-                working as a <strong>Software Engineering Intern at Target Board</strong>,
-                where I&apos;m building infrastructure for platforms serving{' '}
-                <strong>7 Lakh+ students</strong> with high availability.
+                working as a <strong>Software Developer at Target Board</strong>,
+                where I own backend systems for a <strong>1M+ download</strong> EdTech
+                platform serving <strong>7 Lakh+ students</strong> with high availability.
               </p>
               <p>
                 My passion lies at the intersection of scalable backend systems and

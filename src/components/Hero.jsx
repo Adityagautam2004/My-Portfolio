@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const TYPEWRITER_PHRASES = [
   'Full-Stack Developer',
-  'SWE Intern @ Target Board',
+  'Software Developer @ Target Board',
   'Problem Solver',
   'MERN Stack Engineer',
   'Building products that scale',
