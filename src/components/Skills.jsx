@@ -1,52 +1,61 @@
 import { useState, useEffect, useRef } from 'react';
+import {
+  FaJava, FaJs, FaPython, FaDatabase,
+  FaReact, FaNodeJs, FaNetworkWired, FaKey, FaLayerGroup,
+  FaAws, FaDocker, FaGitAlt, FaVial,
+  FaCubes, FaSitemap, FaDraftingCompass, FaServer, FaShareAlt, FaSyncAlt,
+} from 'react-icons/fa';
+import {
+  SiTypescript, SiNextdotjs, SiRedux, SiExpress, SiSocketdotio, SiRedis,
+  SiJest, SiPostman, SiGithubactions,
+  SiPostgresql, SiMongodb, SiFirebase,
+} from 'react-icons/si';
 
 const SKILLS = {
   Languages: [
-    { name: 'Java',       icon: '☕' },
-    { name: 'Python',     icon: '🐍' },
-    { name: 'JavaScript', icon: '✨' },
-    { name: 'TypeScript', icon: '🔷' },
-    { name: 'SQL',        icon: '🗄️' },
-    { name: 'C++',        icon: '⚡' },
+    { name: 'Java',       icon: FaJava,       color: '#E76F00' },
+    { name: 'JavaScript', icon: FaJs,         color: '#F7DF1E' },
+    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+    { name: 'Python',     icon: FaPython,     color: '#3776AB' },
+    { name: 'SQL',        icon: FaDatabase,   color: '#00D4FF' },
   ],
   Frontend: [
-    { name: 'React.js',  icon: '⚛️' },
-    { name: 'Next.js',   icon: '▲' },
-    { name: 'HTML5',     icon: '🌐' },
-    { name: 'CSS3',      icon: '🎨' },
-    { name: 'Tailwind',  icon: '💨' },
-    { name: 'Redux',     icon: '🔄' },
-    { name: 'GSAP',      icon: '🎬' },
+    { name: 'React.js',      icon: FaReact,     color: '#61DAFB' },
+    { name: 'Next.js',       icon: SiNextdotjs },
+    { name: 'Redux Toolkit', icon: SiRedux,     color: '#764ABC' },
   ],
-  Backend: [
-    { name: 'Node.js',    icon: '🟢' },
-    { name: 'Express.js', icon: '⚙️' },
-    { name: 'REST APIs',  icon: '🔗' },
-    { name: 'WebSockets', icon: '📡' },
-    { name: 'JWT',        icon: '🔐' },
+  'Backend & Services': [
+    { name: 'Node.js',   icon: FaNodeJs,       color: '#339933' },
+    { name: 'Express.js',icon: SiExpress },
+    { name: 'REST APIs', icon: FaNetworkWired, color: '#00D4FF' },
+    { name: 'Socket.io', icon: SiSocketdotio },
+    { name: 'OAuth 2.0', icon: FaKey,          color: '#FF9F43' },
+    { name: 'BullMQ',    icon: FaLayerGroup,   color: '#FF6B9D' },
+    { name: 'Redis',     icon: SiRedis,        color: '#DC382D' },
+  ],
+  'Testing & Quality': [
+    { name: 'Playwright',     icon: FaVial,          color: '#2EAD33' },
+    { name: 'Jest',           icon: SiJest,          color: '#C21325' },
+    { name: 'Postman',        icon: SiPostman,       color: '#FF6C37' },
+    { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
   ],
   'Cloud & DevOps': [
-    { name: 'AWS S3',          icon: '☁️' },
-    { name: 'CloudFront',      icon: '🌍' },
-    { name: 'Docker',          icon: '🐳' },
-    { name: 'GitHub Actions',  icon: '🤖' },
-    { name: 'Serverless',      icon: '⚡' },
-    { name: 'Vercel',          icon: '▲' },
-  ],
-  Databases: [
-    { name: 'MongoDB',    icon: '🍃' },
-    { name: 'MySQL',      icon: '🐬' },
-    { name: 'PostgreSQL', icon: '🐘' },
-    { name: 'Redis',      icon: '🔴' },
+    { name: 'AWS',        icon: FaAws,        color: '#FF9900' },
+    { name: 'Docker',     icon: FaDocker,     color: '#2496ED' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+    { name: 'MongoDB',    icon: SiMongodb,    color: '#47A248' },
+    { name: 'Firebase',   icon: SiFirebase,   color: '#FFCA28' },
+    { name: 'Git',        icon: FaGitAlt,     color: '#F05032' },
   ],
   'Core CS': [
-    { name: 'DSA',           icon: '🧮' },
-    { name: 'System Design', icon: '🏗️' },
-    { name: 'DBMS',          icon: '💾' },
-    { name: 'OOPs',          icon: '🧩' },
-    { name: 'OS',            icon: '🖥️' },
-    { name: 'LLD',           icon: '📐' },
-    { name: 'Networking',    icon: '🌐' },
+    { name: 'OOP Design',         icon: FaCubes,           color: '#6C63FF' },
+    { name: 'DSA',                icon: FaSitemap,         color: '#00D4FF' },
+    { name: 'System Design',      icon: FaDraftingCompass, color: '#00FF88' },
+    { name: 'Operating Systems',  icon: FaServer,          color: '#FF9F43' },
+    { name: 'DBMS',               icon: FaDatabase,        color: '#FF6B9D' },
+    { name: 'Networking',         icon: FaNetworkWired,    color: '#6C63FF' },
+    { name: 'Distributed Systems',icon: FaShareAlt,        color: '#00D4FF' },
+    { name: 'Agile / Scrum',      icon: FaSyncAlt,         color: '#00FF88' },
   ],
 };
 
@@ -54,6 +63,7 @@ const CATEGORIES = Object.keys(SKILLS);
 
 /* ── Shared Pill ─────────────────────────────────────────────── */
 function Pill({ skill, visible, delay }) {
+  const Icon = skill.icon;
   return (
     <div
       className="skill-pill"
@@ -64,7 +74,9 @@ function Pill({ skill, visible, delay }) {
       }}
       title={skill.name}
     >
-      <span className="skill-icon" aria-hidden="true">{skill.icon}</span>
+      <span className="skill-icon" style={{ color: skill.color }} aria-hidden="true">
+        <Icon />
+      </span>
       <span className="skill-name">{skill.name}</span>
     </div>
   );

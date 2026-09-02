@@ -2,25 +2,53 @@ import { useEffect, useRef } from 'react';
 
 const PROJECTS = [
   {
-    id: 'prescripto',
+    id: 'dispatch',
     featured: true,
-    emoji: '🩺',
+    emoji: '📬',
     banner: '',
+    title: 'Dispatch — Queue-Driven Outreach Service',
+    tech: ['Node.js', 'BullMQ', 'Redis', 'PostgreSQL', 'Docker'],
+    description: [
+      'Distributed, queue-based backend for high-volume scheduled email delivery — BullMQ over Redis handles asynchronous job processing with retries, exponential backoff, and idempotent job keys that prevent duplicate sends.',
+      'OAuth 2.0 with encrypted refresh-token storage and per-account rate limiting keeps every integration within provider quotas using least-privilege scopes.',
+      'Each recipient is modeled as a state machine persisted in PostgreSQL, with reply-detection logic that halts an in-flight sequence the moment someone responds. Containerized with Docker.',
+    ],
+    live: null,
+    github: null,
+  },
+  {
+    id: 'fortune-first',
+    size: 'third',
+    emoji: '💰',
+    banner: 'alt1',
+    title: 'Fortune First — Portfolio & Finance Management',
+    tech: ['Playwright', 'Jest', 'GitHub Actions', 'Node.js'],
+    description: [
+      'Personal finance & portfolio tracking app backed by a reusable automated test framework — end-to-end (Playwright), integration, and unit tests sharing fixtures and page objects.',
+      'Wired into GitHub Actions on every push/PR, gating merges behind a green run.',
+    ],
+    live: null,
+    github: null,
+  },
+  {
+    id: 'prescripto',
+    size: 'third',
+    emoji: '🩺',
+    banner: 'alt2',
     title: 'Prescripto — Healthcare Ecosystem',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Razorpay', 'Cloudinary'],
     description: [
       'Full-stack doctor-patient booking platform with automated scheduling, doctor dashboards, and medical record tracking.',
       'JWT + Razorpay integration for PCI-compliant secure transactions and payment flows.',
-      'Cloudinary media pipeline — reduced image payload by 60% for performance on low-bandwidth networks.',
     ],
     live: 'https://prescripto-1snl.vercel.app/',
     github: 'https://github.com/Adityagautam2004/Prescripto',
   },
   {
     id: 'movieflix',
-    featured: false,
+    size: 'third',
     emoji: '🎬',
-    banner: 'alt1',
+    banner: 'alt3',
     title: 'Movieflix — Discovery Platform',
     tech: ['React', 'Redux Toolkit', 'Tailwind CSS', 'TMDB API'],
     description: [
@@ -29,20 +57,6 @@ const PROJECTS = [
     ],
     live: 'https://movie-flix-react-app.vercel.app/',
     github: 'https://github.com/Adityagautam2004/MovieFlix-React-App-',
-  },
-  {
-    id: 'examadda',
-    featured: false,
-    emoji: '📚',
-    banner: 'alt2',
-    title: 'ExamAdda Platform',
-    tech: ['Next.js', 'AWS S3', 'CloudFront', 'REST APIs'],
-    description: [
-      'Micro-frontend architecture decomposed into Admin, User, and Tech/News as independent Next.js apps.',
-      'SSG + On-Demand ISR boosted Core Web Vitals by 25% and improved organic SEO significantly.',
-    ],
-    live: 'https://tech.examadda.org/',
-    github: null,
   },
 ];
 
@@ -87,9 +101,15 @@ function ProjectCard({ project }) {
     };
   }, []);
 
+  const sizeClass = project.featured
+    ? 'project-featured'
+    : project.size === 'third'
+      ? 'project-third'
+      : 'project-half';
+
   return (
     <div
-      className={`reveal project-card ${project.featured ? 'project-featured' : 'project-half'}`}
+      className={`reveal project-card ${sizeClass}`}
       ref={revealRef}
     >
       <div ref={cardRef} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -111,32 +131,34 @@ function ProjectCard({ project }) {
             {project.description.map((d, i) => <li key={i}>{d}</li>)}
           </ul>
 
-          <div className="project-links">
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link-btn primary"
-                id={`project-live-${project.id}`}
-              >
-                <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
-                Live Demo
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link-btn secondary"
-                id={`project-gh-${project.id}`}
-              >
-                <i className="fa-brands fa-github" aria-hidden="true" />
-                GitHub
-              </a>
-            )}
-          </div>
+          {(project.live || project.github) && (
+            <div className="project-links">
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-link-btn primary"
+                  id={`project-live-${project.id}`}
+                >
+                  <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
+                  Live Demo
+                </a>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-link-btn secondary"
+                  id={`project-gh-${project.id}`}
+                >
+                  <i className="fa-brands fa-github" aria-hidden="true" />
+                  GitHub
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
